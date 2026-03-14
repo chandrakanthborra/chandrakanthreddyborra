@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Chandrakanth Reddy Borra – AI, Cybersecurity & Data Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep:    #090e1a;
+      --bg-mid:     #0d1526;
+      --bg-card:    #111c32;
+      --bg-card2:   #0f1a2e;
+      --border:     rgba(255,255,255,0.07);
+      --border-hi:  rgba(196,160,80,0.35);
+      --gold:       #c4a050;
+      --gold-light: #e2c070;
+      --cyan:       #4ecdc4;
+      --text:       #e8eaf0;
+      --text-muted: #8898bb;
+      --text-dim:   #5566880;
+      --radius:     12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── circuit pattern background ─────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(78,205,196,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(78,205,196,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── layout ──────────────────────────────────────────── */
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 36px;
+      align-items: start;
+      padding-bottom: 80px;
+    }
+
+    @media (max-width: 860px) {
+      .main-grid { grid-template-columns: 1fr; }
+      .sidebar { order: -1; }
+    }
+
+    /* ─── nav ─────────────────────────────────────────────── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      background: rgba(9,14,26,0.85);
+      border-bottom: 1px solid var(--border);
+      max-width: 100%;
+    }
+
+    .nav-brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ─── hero ────────────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid var(--border-hi);
+      border-radius: 40px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.3; }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: #fff;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      margin-top: 16px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-bio {
+      margin-top: 28px;
+      font-size: 0.97rem;
+      color: var(--text);
+      max-width: 660px;
+      line-height: 1.8;
+      padding: 20px 24px;
+      border-left: 3px solid var(--gold);
+      background: rgba(196,160,80,0.05);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .tag {
+      padding: 5px 14px;
+      border-radius: 40px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      border: 1px solid var(--border-hi);
+      color: var(--gold-light);
+      background: rgba(196,160,80,0.06);
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #0a0e1a;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-outline {
+      border-color: var(--border-hi);
+      color: var(--gold-light);
+      background: rgba(196,160,80,0.05);
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(196,160,80,0.12); }
+
+    /* ─── section headings ───────────────────────────────── */
+    .section { margin-top: 64px; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--cyan);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+
+    /* ─── research cards ─────────────────────────────────── */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .r-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .r-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .r-card:hover { border-color: var(--border-hi); transform: translateY(-3px); }
+    .r-card:hover::before { opacity: 1; }
+
+    .r-card-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(196,160,80,0.1);
+      border: 1px solid var(--border-hi);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+    }
+
+    .r-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .r-card-sub {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--cyan);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .r-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .r-card ul {
+      list-style: none;
+      margin-top: 14px;
+    }
+
+    .r-card ul li {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 3px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .r-card ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.65rem;
+      top: 5px;
+    }
+
+    /* ─── publications ───────────────────────────────────── */
+    .pub-list { display: flex; flex-direction: column; gap: 18px; }
+
+    .pub-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 26px;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 18px;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+
+    .pub-card:hover { border-color: var(--border-hi); }
+
+    .pub-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(78,205,196,0.08);
+      border: 1px solid rgba(78,205,196,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--cyan);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .pub-body {}
+
+    .pub-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(196,160,80,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(196,160,80,0.2);
+      margin-bottom: 10px;
+    }
+
+    .pub-body h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .pub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .pub-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ─── experience ─────────────────────────────────────── */
+    .exp-list { display: flex; flex-direction: column; gap: 20px; }
+
+    .exp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .exp-card::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .exp-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .exp-org {
+      font-size: 0.88rem;
+      color: var(--gold-light);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .exp-period {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--cyan);
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(78,205,196,0.25);
+      background: rgba(78,205,196,0.05);
+      white-space: nowrap;
+    }
+
+    .exp-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0;
+    }
+
+    .tech-pill {
+      font-size: 0.73rem;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .exp-bullets li {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.65rem;
+      top: 4px;
+    }
+
+    /* ─── skills grid ────────────────────────────────────── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-chip {
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .skill-chip:hover {
+      border-color: var(--border-hi);
+      color: var(--gold-light);
+    }
+
+    /* ─── sidebar ────────────────────────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 80px;
+    }
+
+    .side-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .side-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .profile-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .profile-degree {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .profile-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 0.83rem;
+    }
+
+    .profile-row-label {
+      color: var(--text-muted);
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+
+    .profile-row-val {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .edu-item {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .edu-item:last-child { border-bottom: none; }
+
+    .edu-deg {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .edu-school {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .id-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .id-row:last-child { border-bottom: none; }
+
+    .id-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .id-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .id-link {
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-decoration: none;
+      padding: 3px 10px;
+      border: 1px solid var(--border-hi);
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    .id-link:hover { background: rgba(196,160,80,0.1); }
+
+    .cert-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cert-list li {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .cert-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* ─── footer ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── animations ─────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    /* stagger via nth-child on direct children when wrapped */
+    .pub-list > *:nth-child(1) { animation: fadeUp 0.5s 0.05s ease both; }
+    .pub-list > *:nth-child(2) { animation: fadeUp 0.5s 0.10s ease both; }
+    .pub-list > *:nth-child(3) { animation: fadeUp 0.5s 0.15s ease both; }
+    .pub-list > *:nth-child(4) { animation: fadeUp 0.5s 0.20s ease both; }
+    .pub-list > *:nth-child(5) { animation: fadeUp 0.5s 0.25s ease both; }
+    .pub-list > *:nth-child(6) { animation: fadeUp 0.5s 0.30s ease both; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-brand">Dr. C.R. Borra &nbsp;/&nbsp; AI · Cybersecurity · Data</div>
+  <ul class="nav-links">
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- ── PAGE WRAP ────────────────────────────────────────────── -->
+<div class="page-wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">IEEE Published · PhD Researcher</div>
+    <h1>Dr. <span>Chandrakanth</span><br/>Reddy Borra</h1>
+    <p class="hero-subtitle">
+      AI &amp; Cybersecurity Research · Senior Database Administrator<br/>
+      IoT Intrusion Detection · Deep Learning · Cloud Data Systems
+    </p>
+    <div class="hero-bio">
+      Dr. Chandrakanth Reddy Borra is actively engaged in research at the intersection of
+      Artificial Intelligence, Cybersecurity, and Data Management. His work addresses the
+      critical role of databases in AI — including the management of structured and unstructured
+      data, big data platforms, real-time streaming systems, and graph databases that support
+      knowledge discovery and decision-making. His research interests further extend to the
+      integration of cloud-based database systems with scalable AI applications.
+    </div>
+    <div class="hero-tags">
+      <span class="tag">IoT Intrusion Detection</span>
+      <span class="tag">Deep Learning</span>
+      <span class="tag">Cybersecurity</span>
+      <span class="tag">MS SQL Server</span>
+      <span class="tag">AI &amp; Machine Learning</span>
+      <span class="tag">Cloud Data Systems</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="https://ieee.org" class="btn btn-primary" target="_blank">📄 IEEE Profile</a>
+      <a href="https://www.linkedin.com/" class="btn btn-outline" target="_blank">🔗 LinkedIn</a>
+      <a href="https://scholar.google.com/" class="btn btn-outline" target="_blank">🎓 Google Scholar</a>
+      <a href="#publications" class="btn btn-outline">📑 Publications</a>
+    </div>
+  </section>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+
+    <!-- LEFT COLUMN -->
+    <div>
+
+      <!-- RESEARCH FOCUS -->
+      <section class="section" id="research">
+        <div class="section-label">Areas of Expertise</div>
+        <h2 class="section-title">Research Focus</h2>
+        <div class="research-grid">
+
+          <div class="r-card">
+            <div class="r-card-icon">🛡️</div>
+            <div class="r-card-sub">Primary Focus</div>
+            <h3>IoT Network Security &amp; Intrusion Detection</h3>
+            <p>Designing intelligent IDS frameworks for IoT ecosystems using hybrid optimization algorithms, SMOTE-based class balancing, and deep neural architectures.</p>
+            <ul>
+              <li>Vortex Search Optimization &amp; SMOTE for class imbalance</li>
+              <li>Hybrid Swin Transformer + LSTM architectures</li>
+              <li>Satellite-integrated IoT network protection</li>
+              <li>Quantum-inspired hummingbird optimization</li>
+            </ul>
+          </div>
+
+          <div class="r-card">
+            <div class="r-card-icon">🤖</div>
+            <div class="r-card-sub">Core Research</div>
+            <h3>Deep Learning &amp; Optimization Methods</h3>
+            <p>Developing novel hybrid deep learning pipelines with metaheuristic optimizers and ensemble classifiers for robust, balanced intrusion classification.</p>
+            <ul>
+              <li>ELM with educational achievement guided optimization</li>
+              <li>RTGBO-ELM feature selection integration</li>
+              <li>JBOA and NOA hybrid deep learning</li>
+              <li>RNN with quantum-based optimization</li>
+            </ul>
+          </div>
+
+          <div class="r-card">
+            <div class="r-card-icon">🗄️</div>
+            <div class="r-card-sub">Applied Research</div>
+            <h3>AI-Driven Database &amp; Cloud Systems</h3>
+            <p>Bridging enterprise database engineering with AI — autonomous SQL, real-time streaming, big data platforms, and graph databases for knowledge discovery.</p>
+            <ul>
+              <li>Autonomous SQL server architectures</li>
+              <li>Big data &amp; real-time streaming pipelines</li>
+              <li>Graph databases for knowledge discovery</li>
+              <li>Cloud-native scalable AI applications</li>
+            </ul>
+          </div>
+
+          <div class="r-card">
+            <div class="r-card-icon">🌐</div>
+            <div class="r-card-sub">Extended Interest</div>
+            <h3>Environmental AI &amp; Forecasting</h3>
+            <p>Applying machine learning and deep learning models to environmental forecasting problems, including air pollution prediction using sensor and satellite data.</p>
+            <ul>
+              <li>Air pollution forecasting with deep learning</li>
+              <li>Time-series modelling for environmental data</li>
+              <li>Sensor fusion and IoT data integration</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PUBLICATIONS -->
+      <section class="section" id="publications">
+        <div class="section-label">IEEE · Peer-Reviewed</div>
+        <h2 class="section-title">Published Research</h2>
+        <div class="pub-list">
+
+          <div class="pub-card">
+            <div class="pub-num">01</div>
+            <div class="pub-body">
+              <div class="pub-badge">📡 IEEE · IoT Security</div>
+              <h3>Enhancing IoT Network Security: Machine Learning-Based Intrusion Detection Using Vortex Search Optimization and SMOTE for Improved Classification</h3>
+              <div class="pub-meta">
+                <span>📖 IEEE Journal</span>
+                <span>👤 Dr. C. R. Borra et al.</span>
+                <span>🏷 VSO · SMOTE · IDS · IoT</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-card">
+            <div class="pub-num">02</div>
+            <div class="pub-body">
+              <div class="pub-badge">📡 IEEE · Deep Learning</div>
+              <h3>Advancing IoT Security with Temporal-Based Swin Transformer and LSTM: A Hybrid Model for Balanced and Accurate Intrusion Detection</h3>
+              <div class="pub-meta">
+                <span>📖 IEEE Journal</span>
+                <span>👤 Dr. C. R. Borra et al.</span>
+                <span>🏷 Swin Transformer · LSTM · Hybrid IDS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-card">
+            <div class="pub-num">03</div>
+            <div class="pub-body">
+              <div class="pub-badge">📡 IEEE · Satellite IoT</div>
+              <h3>Optimizing Security in Satellite-Integrated IoT Networks: A Hybrid Deep Learning Approach for Intrusion Detection with JBOA and NOA</h3>
+              <div class="pub-meta">
+                <span>📖 IEEE Journal</span>
+                <span>👤 Dr. C. R. Borra et al.</span>
+                <span>🏷 JBOA · NOA · Satellite IoT</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-card">
+            <div class="pub-num">04</div>
+            <div class="pub-body">
+              <div class="pub-badge">📡 IEEE · Intelligent Systems</div>
+              <h3>An Intelligent IoT Attack Detection Model Using Weighted ELM and Educational Achievement Guided Optimization</h3>
+              <div class="pub-meta">
+                <span>📖 IEEE Journal</span>
+                <span>👤 Dr. C. R. Borra et al.</span>
+                <span>🏷 Weighted ELM · EAGO · IoT Attacks</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-card">
+            <div class="pub-num">05</div>
+            <div class="pub-body">
+              <div class="pub-badge">📡 IEEE · Feature Selection</div>
+              <h3>Optimized Intrusion Detection for IoT Networks Using Machine Learning and Feature Selection with RTGBO-ELM Integration</h3>
+              <div class="pub-meta">
+                <span>📖 IEEE Journal</span>
+                <span>👤 Dr. C. R. Borra et al.</span>
+                <span>🏷 RTGBO · ELM · Feature Selection</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-card">
+            <div class="pub-num">06</div>
+            <div class="pub-body">
+              <div class="pub-badge">📡 IEEE · Quantum Optimization</div>
+              <h3>Intrusion Detection in IoT Networks: Leveraging RNN with Quantum-Based Hummingbird Optimization for Enhanced Classification Accuracy</h3>
+              <div class="pub-meta">
+                <span>📖 IEEE Journal</span>
+                <span>👤 Dr. C. R. Borra et al.</span>
+                <span>🏷 RNN · Quantum Optimization · QHOA</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="section" id="experience">
+        <div class="section-label">Professional Background</div>
+        <h2 class="section-title">Work Experience</h2>
+        <div class="exp-list">
+
+          <div class="exp-card">
+            <div class="exp-header">
+              <div>
+                <div class="exp-title">Senior Database Administrator &amp; Developer</div>
+                <div class="exp-org">U.S. Department of Veterans Affairs (VA) · Dallas–Fort Worth, TX</div>
+              </div>
+              <div class="exp-period">2019 – Present</div>
+            </div>
+            <div class="exp-tech">
+              <span class="tech-pill">MS SQL Server</span>
+              <span class="tech-pill">TFS</span>
+              <span class="tech-pill">Visual Studio</span>
+              <span class="tech-pill">.NET</span>
+              <span class="tech-pill">PowerShell</span>
+              <span class="tech-pill">Power BI</span>
+              <span class="tech-pill">SSRS</span>
+              <span class="tech-pill">SSIS</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>Architect and maintain large-scale MS SQL Server environments supporting mission-critical VA healthcare data platforms serving millions of Veterans.</li>
+              <li>Lead database migration programs, disaster recovery implementations, and performance transformation initiatives across enterprise systems.</li>
+              <li>Design and deliver Power BI reporting platforms and SSRS dashboards for operational intelligence and executive decision-making.</li>
+              <li>Manage vendor oversight, SQL agent jobs, and high-availability configurations including Always On Availability Groups.</li>
+              <li>Develop PowerShell automation scripts for database maintenance, monitoring, and compliance reporting workflows.</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-header">
+              <div>
+                <div class="exp-title">Database Engineer / Developer</div>
+                <div class="exp-org">Microsoft · Redmond, WA</div>
+              </div>
+              <div class="exp-period">Prior Experience</div>
+            </div>
+            <div class="exp-tech">
+              <span class="tech-pill">MS SQL Server</span>
+              <span class="tech-pill">Azure SQL</span>
+              <span class="tech-pill">T-SQL</span>
+              <span class="tech-pill">Visual Studio</span>
+              <span class="tech-pill">.NET Framework</span>
+              <span class="tech-pill">TFS / DevOps</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>Engineered SQL Server database solutions and data pipelines for internal Microsoft products and enterprise customer environments.</li>
+              <li>Collaborated with cross-functional teams on database design, performance tuning, and deployment automation using TFS and Visual Studio.</li>
+              <li>Contributed to Azure SQL integration efforts and cloud data platform projects, aligning on-premises architectures with cloud-native patterns.</li>
+            </ul>
+          </div>
+
+          <div class="exp-card">
+            <div class="exp-header">
+              <div>
+                <div class="exp-title">Graduate Researcher &amp; PhD Candidate</div>
+                <div class="exp-org">University of Texas Rio Grande Valley (UTRGV) · Texas</div>
+              </div>
+              <div class="exp-period">PhD Awarded</div>
+            </div>
+            <div class="exp-tech">
+              <span class="tech-pill">Deep Learning</span>
+              <span class="tech-pill">IoT Security</span>
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">TensorFlow</span>
+              <span class="tech-pill">IEEE Publishing</span>
+              <span class="tech-pill">Research Methods</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>Conducted doctoral research in AI-driven cybersecurity with focus on intrusion detection systems for IoT networks using hybrid deep learning and metaheuristic optimization.</li>
+              <li>Published 6 peer-reviewed papers in IEEE journals covering IoT security, deep learning architectures, and novel optimization algorithms.</li>
+              <li>Extended research into autonomous SQL server architectures, air pollution forecasting, and cloud-integrated AI database systems.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section class="section" id="skills">
+        <div class="section-label">Technical Proficiency</div>
+        <h2 class="section-title">Core Skills</h2>
+        <div class="skills-grid">
+          <span class="skill-chip">MS SQL Server</span>
+          <span class="skill-chip">T-SQL &amp; Stored Procedures</span>
+          <span class="skill-chip">PowerShell</span>
+          <span class="skill-chip">Power BI</span>
+          <span class="skill-chip">SSRS / SSIS</span>
+          <span class="skill-chip">Visual Studio</span>
+          <span class="skill-chip">.NET Framework</span>
+          <span class="skill-chip">TFS / Azure DevOps</span>
+          <span class="skill-chip">Always On AG</span>
+          <span class="skill-chip">Database Migration</span>
+          <span class="skill-chip">Disaster Recovery</span>
+          <span class="skill-chip">Performance Tuning</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">TensorFlow / Keras</span>
+          <span class="skill-chip">Deep Learning (CNN, RNN, LSTM)</span>
+          <span class="skill-chip">Transformer Architectures</span>
+          <span class="skill-chip">Metaheuristic Optimization</span>
+          <span class="skill-chip">IoT Security &amp; IDS</span>
+          <span class="skill-chip">Big Data Platforms</span>
+          <span class="skill-chip">Azure SQL</span>
+          <span class="skill-chip">Graph Databases</span>
+          <span class="skill-chip">IEEE Research &amp; Publishing</span>
+        </div>
+      </section>
+
+    </div><!-- /left -->
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- Quick Profile -->
+      <div class="side-card">
+        <div class="profile-name">Dr. Chandrakanth<br/>Reddy Borra</div>
+        <div class="profile-degree">PhD · IEEE Published Researcher</div>
+
+        <div class="profile-row">
+          <span class="profile-row-label">Research</span>
+          <span class="profile-row-val">AI, Cybersecurity, Data Mgmt</span>
+        </div>
+        <div class="profile-row">
+          <span class="profile-row-label">Role</span>
+          <span class="profile-row-val">Sr. DBA &amp; Developer · VA</span>
+        </div>
+        <div class="profile-row">
+          <span class="profile-row-label">Location</span>
+          <span class="profile-row-val">Frisco / Plano, TX · USA</span>
+        </div>
+        <div class="profile-row">
+          <span class="profile-row-label">Papers</span>
+          <span class="profile-row-val">6 IEEE Publications</span>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="side-card">
+        <h2>Education</h2>
+
+        <div class="edu-item">
+          <div class="edu-deg">Doctor of Philosophy (PhD)</div>
+          <div class="edu-school">University of Texas Rio Grande Valley<br/>AI, Cybersecurity &amp; Deep Learning</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-deg">Master of Science</div>
+          <div class="edu-school">University of Texas Rio Grande Valley (UTRGV)<br/>Computer Science / Information Technology</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-deg">Bachelor of Engineering</div>
+          <div class="edu-school">Computer Science &amp; Engineering</div>
+        </div>
+      </div>
+
+      <!-- Official IDs -->
+      <div class="side-card">
+        <h2>Official IDs &amp; Profiles</h2>
+
+        <div class="id-row">
+          <div>
+            <div class="id-label">IEEE Xplore</div>
+            <div class="id-sub">6 Publications</div>
+          </div>
+          <a href="https://ieeexplore.ieee.org" target="_blank" class="id-link">Open ↗</a>
+        </div>
+
+        <div class="id-row">
+          <div>
+            <div class="id-label">Google Scholar</div>
+            <div class="id-sub">Citations &amp; metrics</div>
+          </div>
+          <a href="https://scholar.google.com/" target="_blank" class="id-link">Open ↗</a>
+        </div>
+
+        <div class="id-row">
+          <div>
+            <div class="id-label">ResearchGate</div>
+            <div class="id-sub">Publications &amp; full-text</div>
+          </div>
+          <a href="https://www.researchgate.net/" target="_blank" class="id-link">Open ↗</a>
+        </div>
+
+        <div class="id-row">
+          <div>
+            <div class="id-label">LinkedIn</div>
+            <div class="id-sub">Professional profile</div>
+          </div>
+          <a href="https://www.linkedin.com/" target="_blank" class="id-link">Open ↗</a>
+        </div>
+
+        <div class="id-row">
+          <div>
+            <div class="id-label">GitHub</div>
+            <div class="id-sub">Code &amp; projects</div>
+          </div>
+          <a href="https://github.com/" target="_blank" class="id-link">Open ↗</a>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="side-card">
+        <h2>Certifications &amp; Memberships</h2>
+        <ul class="cert-list">
+          <li>IEEE Member (Professional)</li>
+          <li>Microsoft Certified: SQL Server</li>
+          <li>Power BI Data Analyst</li>
+          <li>Azure Data Engineer Associate</li>
+          <li>10+ Years Enterprise DBA Experience</li>
+        </ul>
+      </div>
+
+    </aside><!-- /sidebar -->
+
+  </div><!-- /main-grid -->
+</div><!-- /page-wrap -->
+
+<footer>
+  <div class="page-wrap">
+    Showcasing research, publications, and enterprise data engineering by Dr. Chandrakanth Reddy Borra · AI · Cybersecurity · Data Management
+  </div>
+</footer>
+
+</body>
+</html>
